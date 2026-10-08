@@ -1,0 +1,25 @@
+info:
+  name: cart add
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:4000/api/cart/get
+  headers:
+    - name: Accept
+      value: "'/'"
+    - name: User-Agent
+      value: Bruno (https://www.usebruno.com)
+    - name: token
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYWVmMTYxMDc5NmJjMjY1MGNiMGE3MCIsImlhdCI6MTc5MDM1OTA3OX0.bmZXBP2Bo8zRk-wVe1w10uqNGwwpiBCABm9DQY67OCc
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
