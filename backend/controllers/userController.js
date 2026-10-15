@@ -46,8 +46,8 @@ const registerUser = async (req,res) => {
             return res.json({success:false,message:"Please enter a valid email"})
         }
 
-        if (password.length<8) {
-            return res.json({success:false,message:"Please enter a strong password"})
+        if (typeof password !== 'string' || !validator.isStrongPassword(password)) {
+            return res.json({success:false,message:"Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a number, and a special character"})
         }
 
         // hashing user password
