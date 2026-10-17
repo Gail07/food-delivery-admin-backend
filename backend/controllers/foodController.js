@@ -1,5 +1,7 @@
 import foodModel from '../models/foodModel.js';
 import fs from 'fs';
+import path from 'path';
+import { uploadDirectory } from '../config/uploadDirectory.js';
 
 
 // add food item
@@ -39,7 +41,7 @@ const listFood = async (req, res) => {
 const removeFood = async (req, res) => {
     try {
         const food = await foodModel.findById(req.body.id);
-            fs.unlink(`uploads/${food.image}`, () => {});
+            fs.unlink(path.join(uploadDirectory, food.image), () => {});
         await foodModel.findByIdAndDelete(req.body.id);
         res.json({ success: true, message: "Food Removed" });
     } catch (error) {
