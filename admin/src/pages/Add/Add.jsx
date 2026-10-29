@@ -2,10 +2,10 @@ import React from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import { useState } from 'react'
-import axios from 'axios'
+import { api } from '../../api'
 import { toast } from 'react-toastify'
 
-const Add = ({url}) => {
+const Add = () => {
 
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
@@ -29,7 +29,7 @@ const Add = ({url}) => {
     formData.append('description', data.description);
     formData.append('category', data.category);
     formData.append('price', Number(data.price));
-    const response = await axios.post(`${url}/api/food/add`, formData);
+    const response = await api.post(`/api/food/add`, formData);
     if (response.data.success) {
       setData({
         name: '',
@@ -53,7 +53,7 @@ const Add = ({url}) => {
           <label htmlFor='image'>
             <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt='' />
           </label>
-          <input onChange={(e) => setImage(e.target.files[0])} type='file' id='image' hidden required />
+          <input onChange={(e) => setImage(e.target.files[0])} type='file' id='image' accept='image/png,image/jpeg,image/webp' hidden required />
         </div>
         <div className="add-product-name flex-col">
           <p>Product Name</p>

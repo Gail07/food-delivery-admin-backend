@@ -12,7 +12,7 @@ http:
     - name: User-Agent
       value: Bruno (https://www.usebruno.com)
     - name: token
-      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYWVmMTYxMDc5NmJjMjY1MGNiMGE3MCIsImlhdCI6MTc5MDM1OTA3OX0.bmZXBP2Bo8zRk-wVe1w10uqNGwwpiBCABm9DQY67OCc
+      value: "{{token}}"
   body:
     type: json
     data: ""
