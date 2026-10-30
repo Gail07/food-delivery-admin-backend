@@ -12,3 +12,17 @@
 .navbar .profile{
     width: 40px;
 }
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.navbar-logout{
+    padding: 6px 14px;
+    border: 1px solid tomato;
+    border-radius: 4px;
+    background: transparent;
+    color: tomato;
+    cursor: pointer;
+}

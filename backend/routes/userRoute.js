@@ -1,10 +1,12 @@
 import express from 'express'
-import { loginUser,registerUser } from '../controllers/userController.js'
+import { loginUser,loginAdmin,registerUser } from '../controllers/userController.js'
+import { authLimiter } from '../middleware/rateLimit.js'
 
 
 const userRouter = express.Router()
 
-userRouter.post('/register',registerUser)
-userRouter.post('/login',loginUser)
+userRouter.post('/register',authLimiter,registerUser)
+userRouter.post('/login',authLimiter,loginUser)
+userRouter.post('/admin/login',authLimiter,loginAdmin)
 
 export default userRouter;
