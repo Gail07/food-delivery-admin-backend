@@ -1,4 +1,5 @@
-import 'dotenv/config'
+// Doit rester le premier import : les imports ES sont évalués dans l'ordre
+import './config/env.js'
 import express from "express"
 import cors from "cors"
 import helmet from "helmet"
@@ -13,18 +14,6 @@ import orderRouter from "./routes/orderRoute.js";
 import { stripeWebhook } from "./controllers/orderController.js";
 
 dns.setServers(["8.8.8.8"]);
-
-// Refuse de démarrer sans les secrets indispensables (ou avec un JWT_SECRET trop court)
-const REQUIRED_ENV = ["MONGODB_URI", "JWT_SECRET", "STRIPE_SECRET_KEY", "STRIPE_WEBHOOK_SECRET"];
-const missing = REQUIRED_ENV.filter((name) => !process.env[name]);
-if (missing.length) {
-    console.error(`Missing environment variables: ${missing.join(", ")}`);
-    process.exit(1);
-}
-if (process.env.JWT_SECRET.length < 32) {
-    console.error("JWT_SECRET must be at least 32 characters long");
-    process.exit(1);
-}
 
 const isProduction = process.env.NODE_ENV === "production";
 
