@@ -2,8 +2,12 @@
 // Usage : node scripts/createAdmin.js email@exemple.com
 // (le compte doit d'abord avoir été créé via l'inscription du site)
 import 'dotenv/config'
+import dns from "dns";
 import mongoose from "mongoose";
 import userModel from "../models/userModel.js";
+
+// Même contournement DNS que server.js : certains réseaux bloquent les requêtes SRV de mongodb+srv://
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 const email = process.argv[2]?.trim().toLowerCase();
 if (!email) {
